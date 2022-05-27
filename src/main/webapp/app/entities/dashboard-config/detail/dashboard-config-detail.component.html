@@ -1,0 +1,114 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="dashboardConfig">
+      <h2 data-cy="dashboardConfigDetailsHeading">
+        <span jhiTranslate="dashboardApp.dashboardConfig.detail.title">Dashboard Config</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="dashboardApp.dashboardConfig.id">Id</span></dt>
+        <dd>
+          <span>{{ dashboardConfig.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="dashboardApp.dashboardConfig.margin">Margin</span></dt>
+        <dd>
+          <span>{{ dashboardConfig.margin }}</span>
+        </dd>
+        <dt><span jhiTranslate="dashboardApp.dashboardConfig.outerMargin">Outer Margin</span></dt>
+        <dd>
+          <span>{{ dashboardConfig.outerMargin }}</span>
+        </dd>
+        <dt><span jhiTranslate="dashboardApp.dashboardConfig.outerMarginTop">Outer Margin Top</span></dt>
+        <dd>
+          <span>{{ dashboardConfig.outerMarginTop }}</span>
+        </dd>
+        <dt><span jhiTranslate="dashboardApp.dashboardConfig.useTransformPositioning">Use Transform Positioning</span></dt>
+        <dd>
+          <span>{{ dashboardConfig.useTransformPositioning }}</span>
+        </dd>
+        <dt><span jhiTranslate="dashboardApp.dashboardConfig.mobileBreakpoint">Mobile Breakpoint</span></dt>
+        <dd>
+          <span>{{ dashboardConfig.mobileBreakpoint }}</span>
+        </dd>
+        <dt><span jhiTranslate="dashboardApp.dashboardConfig.useBodyForBreakpoint">Use Body For Breakpoint</span></dt>
+        <dd>
+          <span>{{ dashboardConfig.useBodyForBreakpoint }}</span>
+        </dd>
+        <dt><span jhiTranslate="dashboardApp.dashboardConfig.minCols">Min Cols</span></dt>
+        <dd>
+          <span>{{ dashboardConfig.minCols }}</span>
+        </dd>
+        <dt><span jhiTranslate="dashboardApp.dashboardConfig.maxCols">Max Cols</span></dt>
+        <dd>
+          <span>{{ dashboardConfig.maxCols }}</span>
+        </dd>
+        <dt><span jhiTranslate="dashboardApp.dashboardConfig.minRows">Min Rows</span></dt>
+        <dd>
+          <span>{{ dashboardConfig.minRows }}</span>
+        </dd>
+        <dt><span jhiTranslate="dashboardApp.dashboardConfig.maxRows">Max Rows</span></dt>
+        <dd>
+          <span>{{ dashboardConfig.maxRows }}</span>
+        </dd>
+        <dt><span jhiTranslate="dashboardApp.dashboardConfig.maxItemCols">Max Item Cols</span></dt>
+        <dd>
+          <span>{{ dashboardConfig.maxItemCols }}</span>
+        </dd>
+        <dt><span jhiTranslate="dashboardApp.dashboardConfig.minItemCols">Min Item Cols</span></dt>
+        <dd>
+          <span>{{ dashboardConfig.minItemCols }}</span>
+        </dd>
+        <dt><span jhiTranslate="dashboardApp.dashboardConfig.maxItemRows">Max Item Rows</span></dt>
+        <dd>
+          <span>{{ dashboardConfig.maxItemRows }}</span>
+        </dd>
+        <dt><span jhiTranslate="dashboardApp.dashboardConfig.minItemRows">Min Item Rows</span></dt>
+        <dd>
+          <span>{{ dashboardConfig.minItemRows }}</span>
+        </dd>
+        <dt><span jhiTranslate="dashboardApp.dashboardConfig.maxItemArea">Max Item Area</span></dt>
+        <dd>
+          <span>{{ dashboardConfig.maxItemArea }}</span>
+        </dd>
+        <dt><span jhiTranslate="dashboardApp.dashboardConfig.minItemArea">Min Item Area</span></dt>
+        <dd>
+          <span>{{ dashboardConfig.minItemArea }}</span>
+        </dd>
+        <dt><span jhiTranslate="dashboardApp.dashboardConfig.defaultItemCols">Default Item Cols</span></dt>
+        <dd>
+          <span>{{ dashboardConfig.defaultItemCols }}</span>
+        </dd>
+        <dt><span jhiTranslate="dashboardApp.dashboardConfig.defaultItemRows">Default Item Rows</span></dt>
+        <dd>
+          <span>{{ dashboardConfig.defaultItemRows }}</span>
+        </dd>
+        <dt><span jhiTranslate="dashboardApp.dashboardConfig.ignoreMarginInRow">Ignore Margin In Row</span></dt>
+        <dd>
+          <span>{{ dashboardConfig.ignoreMarginInRow }}</span>
+        </dd>
+        <dt><span jhiTranslate="dashboardApp.dashboardConfig.draggable">Draggable</span></dt>
+        <dd>
+          <span>{{ dashboardConfig.draggable }}</span>
+        </dd>
+        <dt><span jhiTranslate="dashboardApp.dashboardConfig.resizable">Resizable</span></dt>
+        <dd>
+          <span>{{ dashboardConfig.resizable }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/dashboard-config', dashboardConfig.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
