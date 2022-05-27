@@ -1,0 +1,118 @@
+<div>
+  <h2 id="page-heading" data-cy="DashboardConfigHeading">
+    <span jhiTranslate="dashboardApp.dashboardConfig.home.title">Dashboard Configs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="dashboardApp.dashboardConfig.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-dashboard-config"
+        [routerLink]="['/dashboard-config/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="dashboardApp.dashboardConfig.home.createLabel"> Create a new Dashboard Config </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="dashboardConfigs?.length === 0">
+    <span jhiTranslate="dashboardApp.dashboardConfig.home.notFound">No dashboardConfigs found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="dashboardConfigs && dashboardConfigs.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="dashboardApp.dashboardConfig.id">Id</span></th>
+          <th scope="col"><span jhiTranslate="dashboardApp.dashboardConfig.margin">Margin</span></th>
+          <th scope="col"><span jhiTranslate="dashboardApp.dashboardConfig.outerMargin">Outer Margin</span></th>
+          <th scope="col"><span jhiTranslate="dashboardApp.dashboardConfig.outerMarginTop">Outer Margin Top</span></th>
+          <th scope="col"><span jhiTranslate="dashboardApp.dashboardConfig.useTransformPositioning">Use Transform Positioning</span></th>
+          <th scope="col"><span jhiTranslate="dashboardApp.dashboardConfig.mobileBreakpoint">Mobile Breakpoint</span></th>
+          <th scope="col"><span jhiTranslate="dashboardApp.dashboardConfig.useBodyForBreakpoint">Use Body For Breakpoint</span></th>
+          <th scope="col"><span jhiTranslate="dashboardApp.dashboardConfig.minCols">Min Cols</span></th>
+          <th scope="col"><span jhiTranslate="dashboardApp.dashboardConfig.maxCols">Max Cols</span></th>
+          <th scope="col"><span jhiTranslate="dashboardApp.dashboardConfig.minRows">Min Rows</span></th>
+          <th scope="col"><span jhiTranslate="dashboardApp.dashboardConfig.maxRows">Max Rows</span></th>
+          <th scope="col"><span jhiTranslate="dashboardApp.dashboardConfig.maxItemCols">Max Item Cols</span></th>
+          <th scope="col"><span jhiTranslate="dashboardApp.dashboardConfig.minItemCols">Min Item Cols</span></th>
+          <th scope="col"><span jhiTranslate="dashboardApp.dashboardConfig.maxItemRows">Max Item Rows</span></th>
+          <th scope="col"><span jhiTranslate="dashboardApp.dashboardConfig.minItemRows">Min Item Rows</span></th>
+          <th scope="col"><span jhiTranslate="dashboardApp.dashboardConfig.maxItemArea">Max Item Area</span></th>
+          <th scope="col"><span jhiTranslate="dashboardApp.dashboardConfig.minItemArea">Min Item Area</span></th>
+          <th scope="col"><span jhiTranslate="dashboardApp.dashboardConfig.defaultItemCols">Default Item Cols</span></th>
+          <th scope="col"><span jhiTranslate="dashboardApp.dashboardConfig.defaultItemRows">Default Item Rows</span></th>
+          <th scope="col"><span jhiTranslate="dashboardApp.dashboardConfig.ignoreMarginInRow">Ignore Margin In Row</span></th>
+          <th scope="col"><span jhiTranslate="dashboardApp.dashboardConfig.draggable">Draggable</span></th>
+          <th scope="col"><span jhiTranslate="dashboardApp.dashboardConfig.resizable">Resizable</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let dashboardConfig of dashboardConfigs; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/dashboard-config', dashboardConfig.id, 'view']">{{ dashboardConfig.id }}</a>
+          </td>
+          <td>{{ dashboardConfig.margin }}</td>
+          <td>{{ dashboardConfig.outerMargin }}</td>
+          <td>{{ dashboardConfig.outerMarginTop }}</td>
+          <td>{{ dashboardConfig.useTransformPositioning }}</td>
+          <td>{{ dashboardConfig.mobileBreakpoint }}</td>
+          <td>{{ dashboardConfig.useBodyForBreakpoint }}</td>
+          <td>{{ dashboardConfig.minCols }}</td>
+          <td>{{ dashboardConfig.maxCols }}</td>
+          <td>{{ dashboardConfig.minRows }}</td>
+          <td>{{ dashboardConfig.maxRows }}</td>
+          <td>{{ dashboardConfig.maxItemCols }}</td>
+          <td>{{ dashboardConfig.minItemCols }}</td>
+          <td>{{ dashboardConfig.maxItemRows }}</td>
+          <td>{{ dashboardConfig.minItemRows }}</td>
+          <td>{{ dashboardConfig.maxItemArea }}</td>
+          <td>{{ dashboardConfig.minItemArea }}</td>
+          <td>{{ dashboardConfig.defaultItemCols }}</td>
+          <td>{{ dashboardConfig.defaultItemRows }}</td>
+          <td>{{ dashboardConfig.ignoreMarginInRow }}</td>
+          <td>{{ dashboardConfig.draggable }}</td>
+          <td>{{ dashboardConfig.resizable }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/dashboard-config', dashboardConfig.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/dashboard-config', dashboardConfig.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(dashboardConfig)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
